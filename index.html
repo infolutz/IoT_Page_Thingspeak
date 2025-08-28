@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento de Ambientes - IoT </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+    :root {
+        --cor-principal: #005c47;
+        --cor-secundaria: #3498db;
+        --cor-fundo: #ecf0f1;
+        --cor-branca: #ffffff;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--cor-fundo);
+        color: var(--cor-principal);
+    }
+
+    header {
+        background-color: var(--cor-principal);
+        color: var(--cor-branca);
+        padding: 20px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    header img {
+        height: 80px;
+        margin-top: 10px;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: center;
+        background-color: var(--cor-secundaria);
+        flex-wrap: wrap;
+    }
+
+    .menu a {
+        padding: 14px 20px;
+        text-decoration: none;
+        color: var(--cor-branca);
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .menu a:hover {
+        background-color: #2980b9;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: var(--cor-branca);
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .sensor {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .sensor h3 {
+        color: var(--cor-secundaria);
+    }
+
+    iframe {
+        width: 450px;       /* Mantém o tamanho proporcional */
+        height: 260px;      /* Altura igual ao exemplo */
+        max-width: 100%;    /* Responsivo para telas menores */
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        iframe {
+            width: 100%; /* Em celulares, o gráfico ocupa toda a largura */
+            height: 220px;
+        }
+    }
+</style>
+    <script>
+        function showEnvironment(env) {
+            const environments = document.getElementsByClassName('environment');
+            for (let i = 0; i < environments.length; i++) {
+                environments[i].classList.add('hidden');
+            }
+            document.getElementById(env).classList.remove('hidden');
+        }
+
+        // Mostrar o primeiro ambiente por padrão
+        window.onload = () => showEnvironment('ambiente1');
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-seedling"></i> Monitoramento de Ambientes - IoT</h1>
+        <img src="imagens/logoIFFAR.png" alt="Instituto Federal Farroupilha - Campus Panambi" />
+    </header>
+
+    <nav class="menu">
+        <a href="javascript:void(0)" onclick="showEnvironment('ambiente1')"><i class="fas fa-laptop-code"></i> Ambiente 1</a>
+        <a href="javascript:void(0)" onclick="showEnvironment('ambiente2')"><i class="fas fa-tree"></i> Ambiente 2</a>
+        <a href="javascript:void(0)" onclick="showEnvironment('ambiente3')"><i class="fas fa-flask"></i> Ambiente 3</a>
+        <a href="javascript:void(0)" onclick="showEnvironment('ambiente4')"><i class="fas fa-warehouse"></i> Ambiente 4</a>
+    </nav>
+
+    <section id="ambiente1" class="container environment">
+        <h2>Nome do Ambiente: Laboratório de TI</h2>
+
+        <div class="sensor">
+            <h3>Sensor 1 - Distância</h3>
+          <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1883746/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&title=Dist%C3%A2ncia&type=line"></iframe>
+
+        </div>
+
+        <div class="sensor">
+            <h3>Sensor 2 - Umidade Relativa</h3>
+            <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1883746/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&title=Umidade+%25&type=line"></iframe>
+
+        </div>
+
+        <div class="sensor">
+            <h3>Sensor 3 - Temperatura</h3>
+            <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1883746/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&title=Temperatura+%C2%BAC&type=line&yaxis=%C2%BAC"></iframe>
+
+
+        </div>
+
+        <div class="sensor">
+            <h3>Sensor 4 - Pressão</h3>
+            <iframe src="https://thingspeak.com/channels/1883746/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Press%C3%A3o+Simulada+Tinkercad&type=line&yaxis=hPa"></iframe>
+        </div>
+
+        <div class="sensor">
+            <h3>Sensor 5 - Luminosidade</h3>
+            <iframe src="https://thingspeak.com/channels/1883746/charts/5?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Luminosidade+Simulada+Tinkercad&type=line&yaxis=lux"></iframe>
+        </div>
+    </section>
+
+    <section id="ambiente2" class="container environment hidden">
+        <h2>Nome do Ambiente: Ambiente 2</h2>
+        <p>Conteúdo do Ambiente 2.</p>
+    </section>
+
+    <section id="ambiente3" class="container environment hidden">
+        <h2>Nome do Ambiente: Ambiente 3</h2>
+        <p>Conteúdo do Ambiente 3.</p>
+    </section>
+
+    <section id="ambiente4" class="container environment hidden">
+        <h2>Nome do Ambiente: Ambiente 4</h2>
+        <p>Conteúdo do Ambiente 4.</p>
+    </section>
+
+</body>
+</html>
